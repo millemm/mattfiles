@@ -1,0 +1,89 @@
+{
+  "type": "object",
+  "properties": {
+    "cancerLaterality": {
+      "description": "Determine the laterality of the breast cancer described in the record.",
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "L",
+        "R",
+        "B",
+        null
+      ],
+      "enumDescriptions": [
+        "Assign 'L': if the breast cancer is documented as involving the left breast.",
+        "Assign 'R': if the breast cancer is documented as involving the right breast.",
+        "Assign 'B': if breast cancer is documented as bilateral.",
+        "Assign null: if breast cancer laterality is unknown, missing, or cannot be determined from the record."
+      ]
+    },
+    "tnmStage": {
+      "description": "Extract the combined TNM stage exactly as explicitly documented in the record, for example cT2N0M0, pT1cN0M0, or ypT0N0. Do not infer TNM stage from tumor size, lymph-node findings, imaging findings, or absence of metastatic disease. Assign null if a combined TNM stage is not explicitly documented.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "radiotherapyReceived": {
+      "description": "Determine whether the patient actually received radiotherapy for breast cancer. Treatment that was only planned, recommended, discussed, or considered does not count as received.",
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "Y",
+        "N",
+        null
+      ],
+      "enumDescriptions": [
+        "Assign 'Y': if the record explicitly indicates that radiotherapy was administered to the patient.",
+        "Assign 'N': if the record explicitly indicates that the patient did not receive radiotherapy.",
+        "Assign null: if radiotherapy status is unknown, missing, or cannot be determined from the record."
+      ]
+    },
+    "chemotherapyReceived": {
+      "description": "Determine whether the patient actually received chemotherapy for breast cancer. Chemotherapy that was only planned, recommended, discussed, or considered does not count as received.",
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "Y",
+        "N",
+        null
+      ],
+      "enumDescriptions": [
+        "Assign 'Y': if the record explicitly indicates that chemotherapy was administered to the patient.",
+        "Assign 'N': if the record explicitly indicates that the patient did not receive chemotherapy.",
+        "Assign null: if chemotherapy status is unknown, missing, or cannot be determined from the record."
+      ]
+    },
+    "surgeryReceived": {
+      "description": "Determine whether the patient underwent surgery for breast cancer. Surgery that was only planned, recommended, discussed, or considered does not count as received.",
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "Y",
+        "N",
+        null
+      ],
+      "enumDescriptions": [
+        "Assign 'Y': if the record explicitly indicates that breast cancer surgery was performed.",
+        "Assign 'N': if the record explicitly indicates that the patient did not undergo breast cancer surgery.",
+        "Assign null: if surgery status is unknown, missing, or cannot be determined from the record."
+      ]
+    }
+  },
+  "required": [
+    "cancerLaterality",
+    "tnmStage",
+    "radiotherapyReceived",
+    "chemotherapyReceived",
+    "surgeryReceived"
+  ]
+}

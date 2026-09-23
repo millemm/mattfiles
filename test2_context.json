@@ -1,0 +1,10 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "cancerLaterality": "https://example.org/breast-cancer-treatment#cancerLaterality",
+    "tnmStage": "https://example.org/breast-cancer-treatment#tnmStage",
+    "radiotherapyReceived": "https://example.org/breast-cancer-treatment#radiotherapyReceived",
+    "chemotherapyReceived": "https://example.org/breast-cancer-treatment#chemotherapyReceived",
+    "surgeryReceived": "https://example.org/breast-cancer-treatment#surgeryReceived"
+  }
+}
