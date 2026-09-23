@@ -1,9 +1,9 @@
 {
-  "systemPrompt": "https://bwchps.org/wp-content/temp/breast_cancer_treatment_systemPrompt.txt",
+  "systemPrompt": "https://github.com/millemm/mattfiles/blob/main/breast_cancer_treatment_systemPrompt.txt",
   "schemaFiles": [
-    "https://bwchps.org/wp-content/temp/breast_cancer_treatment_schema.json"
+    "https://github.com/millemm/mattfiles/blob/main/breast_cancer_treatment_schema.json"
   ],
   "jsonldContextFiles": [
-    "https://bwchps.org/wp-content/temp/breast_cancer_treatment_context.json"
+    "https://github.com/millemm/mattfiles/blob/main/breast_cancer_treatment_context.json"
   ]
 }
