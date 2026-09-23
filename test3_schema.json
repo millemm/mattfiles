@@ -1,0 +1,43 @@
+{
+  "type": "object",
+  "properties": {
+    "radiotherapyReceived": {
+      "description": "Whether the patient actually received radiotherapy.",
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "Y",
+        "N",
+        null
+      ],
+      "enumDescriptions": [
+        "Assign 'Y' if the record explicitly states that radiotherapy was given.",
+        "Assign 'N' if the record explicitly states that radiotherapy was not given.",
+        "Assign null if this cannot be determined from the record."
+      ]
+    },
+    "surgeryReceived": {
+      "description": "Whether the patient actually underwent breast cancer surgery.",
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "Y",
+        "N",
+        null
+      ],
+      "enumDescriptions": [
+        "Assign 'Y' if the record explicitly states that surgery was performed.",
+        "Assign 'N' if the record explicitly states that surgery was not performed.",
+        "Assign null if this cannot be determined from the record."
+      ]
+    }
+  },
+  "required": [
+    "radiotherapyReceived",
+    "surgeryReceived"
+  ]
+}
