@@ -1,0 +1,43 @@
+{
+  "@context": {
+    "bct": "https://example.org/breast-cancer-treatment#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "tnmStage": "bct:tnmStage",
+    "tnmStagingBasis": "bct:tnmStagingBasis",
+    "tStage": "bct:tStage",
+    "nStage": "bct:nStage",
+    "mStage": "bct:mStage",
+    "cancerLaterality": "bct:cancerLaterality",
+    "receivedRadiotherapy": "bct:receivedRadiotherapy",
+    "receivedChemotherapy": "bct:receivedChemotherapy",
+    "chemotherapyDrugs": {
+      "@id": "bct:chemotherapyDrug",
+      "@container": "@set"
+    },
+    "receivedSurgery": "bct:receivedSurgery",
+    "surgeryType": "bct:surgeryType",
+    "surgeryLaterality": "bct:surgeryLaterality",
+    "radiotherapyStartDate": "bct:radiotherapyStartDate",
+    "radiotherapyEndDate": "bct:radiotherapyEndDate",
+    "toleratedTreatmentWell": "bct:toleratedTreatmentWell",
+    "treatmentReaction": "bct:treatmentReaction",
+    "treatmentCompletedAsPlanned": "bct:treatmentCompletedAsPlanned",
+    "radiationFields": {
+      "@id": "bct:radiationField",
+      "@container": "@set"
+    },
+    "dose": {
+      "@id": "bct:dose",
+      "@type": "xsd:decimal"
+    },
+    "doseUnit": "bct:doseUnit",
+    "fractions": {
+      "@id": "bct:fractions",
+      "@type": "xsd:integer"
+    },
+    "fieldType": "bct:fieldType",
+    "radiationType": "bct:radiationType",
+    "radiationEnergy": "bct:radiationEnergy",
+    "isBoost": "bct:isBoost"
+  }
+}

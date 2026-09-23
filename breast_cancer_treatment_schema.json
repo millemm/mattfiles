@@ -1,0 +1,345 @@
+{
+  "type": "object",
+  "properties": {
+    "tnmStage": {
+      "description": "Extract the combined breast cancer TNM stage exactly as documented in the clinical record, including clinical or pathologic prefixes when provided (for example, cT2N1M0 or pT1cN0M0). Do not infer a combined TNM stage if it is not explicitly documented. Assign null if the combined TNM stage is unknown, missing, or cannot be determined from the report.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "tnmStagingBasis": {
+      "description": "Determine whether the documented TNM stage is clinical or pathologic. Use the explicit TNM prefix or wording in the report. Assign null if the staging basis is unknown, mixed/ambiguous, or not documented. Do not infer pathologic staging solely because surgery or pathology is mentioned.",
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "clinical",
+        "pathologic",
+        null
+      ],
+      "enumDescriptions": [
+        "Assign 'clinical' when the TNM stage is explicitly clinical, such as a cTNM designation (for example, cT2N1M0).",
+        "Assign 'pathologic' when the TNM stage is explicitly pathologic, such as a pTNM designation (for example, pT1cN0M0).",
+        "Assign null if the staging basis is unknown, not documented, mixed, or cannot be determined reliably."
+      ]
+    },
+    "tStage": {
+      "description": "Extract the breast cancer T category exactly as documented, including any prefix and subcategory when present (for example, cT2, pT1c, ypT0, Tis). Preserve modifiers that are part of the documented T designation. Assign null if the T category is unknown or not documented. Do not infer T from tumor size unless a T category is explicitly stated.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "nStage": {
+      "description": "Extract the breast cancer N category exactly as documented, including any prefix, subcategory, or modifier when present (for example, cN1, pN0, pN1a, ypN0). Preserve the documented N designation. Assign null if the N category is unknown or not documented. Do not infer N from lymph-node findings unless an N category is explicitly stated.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "mStage": {
+      "description": "Extract the breast cancer M category exactly as documented, including any prefix or subcategory when present (for example, cM0, pM1, M0). Preserve the documented M designation. Assign null if the M category is unknown or not documented. Do not infer M from absence of metastatic disease unless an M category is explicitly stated.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "cancerLaterality": {
+      "description": "Extract the laterality of the breast cancer as a clinical descriptor. Assign null if laterality is unknown, missing, or cannot be determined from the report.",
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "L",
+        "R",
+        "B",
+        null
+      ],
+      "enumDescriptions": [
+        "Assign 'L' if the breast cancer is in the left breast.",
+        "Assign 'R' if the breast cancer is in the right breast.",
+        "Assign 'B' if bilateral breast cancer is documented.",
+        "Assign null if laterality is unknown, missing, or cannot be determined."
+      ]
+    },
+    "receivedRadiotherapy": {
+      "description": "Determine whether the patient received radiotherapy for the breast cancer. Do not count a recommendation or planned treatment as received treatment unless administration is documented.",
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "Y",
+        "N",
+        null
+      ],
+      "enumDescriptions": [
+        "Assign 'Y' if the report documents that radiotherapy was administered.",
+        "Assign 'N' if the report explicitly documents that radiotherapy was not administered.",
+        "Assign null if radiotherapy status is unknown or not documented."
+      ]
+    },
+    "receivedChemotherapy": {
+      "description": "Determine whether the patient received chemotherapy for the breast cancer. Do not count endocrine therapy alone as chemotherapy. Do not count a recommendation or planned regimen as received chemotherapy unless administration is documented.",
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "Y",
+        "N",
+        null
+      ],
+      "enumDescriptions": [
+        "Assign 'Y' if the report documents that chemotherapy was administered.",
+        "Assign 'N' if the report explicitly documents that chemotherapy was not administered.",
+        "Assign null if chemotherapy status is unknown or not documented."
+      ]
+    },
+    "chemotherapyDrugs": {
+      "description": "If chemotherapy was received, extract the names of all chemotherapy drugs explicitly documented as administered. Preserve drug names as written when practical. Assign null if chemotherapy drug information is unavailable or chemotherapy was not received.",
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "string"
+      }
+    },
+    "receivedSurgery": {
+      "description": "Determine whether the patient underwent breast cancer surgery. Do not count a planned surgery as performed unless the report documents that it occurred.",
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "Y",
+        "N",
+        null
+      ],
+      "enumDescriptions": [
+        "Assign 'Y' if breast cancer surgery was performed.",
+        "Assign 'N' if the report explicitly documents that breast cancer surgery was not performed.",
+        "Assign null if surgery status is unknown or not documented."
+      ]
+    },
+    "surgeryType": {
+      "description": "If breast cancer surgery was performed, determine whether the definitive breast operation was lumpectomy/breast-conserving surgery or mastectomy. Assign null if surgery was not performed, the surgery type is unknown, or the documented operation does not permit classification into these categories.",
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "lumpectomy",
+        "mastectomy",
+        null
+      ],
+      "enumDescriptions": [
+        "Assign 'lumpectomy' for lumpectomy, partial mastectomy, segmental mastectomy, wide local excision, or other clearly documented breast-conserving excision.",
+        "Assign 'mastectomy' if mastectomy is documented.",
+        "Assign null if surgery was not performed or the surgery type is unknown or cannot be classified."
+      ]
+    },
+    "surgeryLaterality": {
+      "description": "If breast cancer surgery was performed, extract the laterality of the breast surgery.",
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "L",
+        "R",
+        "B",
+        null
+      ],
+      "enumDescriptions": [
+        "Assign 'L' if surgery was performed on the left breast.",
+        "Assign 'R' if surgery was performed on the right breast.",
+        "Assign 'B' if bilateral breast surgery was performed.",
+        "Assign null if surgery was not performed or laterality is unknown, missing, or cannot be determined."
+      ]
+    },
+    "radiotherapyStartDate": {
+      "description": "Extract the start date of the breast cancer radiotherapy course. Use YYYY-MM-DD when a complete date is available. If only a partial date is documented, preserve the available date text rather than inventing missing components. Assign null if the start date is unknown or not documented.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "radiotherapyEndDate": {
+      "description": "Extract the end date of the breast cancer radiotherapy course. Use YYYY-MM-DD when a complete date is available. If only a partial date is documented, preserve the available date text rather than inventing missing components. Assign null if the end date is unknown or not documented.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "toleratedTreatmentWell": {
+      "description": "Determine whether the report states that the patient tolerated radiotherapy well. Base this on explicit documentation rather than inferring from treatment completion alone.",
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "Y",
+        "N",
+        null
+      ],
+      "enumDescriptions": [
+        "Assign 'Y' if the report explicitly states or clearly documents that radiotherapy was tolerated well without a significant treatment-limiting reaction.",
+        "Assign 'N' if the report documents that radiotherapy was not tolerated well or describes a significant treatment-related reaction indicating poor tolerance.",
+        "Assign null if treatment tolerance is not documented or cannot be determined."
+      ]
+    },
+    "treatmentReaction": {
+      "description": "If toleratedTreatmentWell is 'N', describe the documented treatment-related reaction, toxicity, or complication. Do not infer a reaction. Assign null if treatment was tolerated well or no reaction is documented.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "treatmentCompletedAsPlanned": {
+      "description": "Determine whether the planned radiotherapy course was completed without being stopped early. Temporary interruptions followed by completion should still be considered completed as planned unless the report indicates the course was permanently discontinued or ended early.",
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "Y",
+        "N",
+        null
+      ],
+      "enumDescriptions": [
+        "Assign 'Y' if the report documents that the planned radiotherapy course was completed.",
+        "Assign 'N' if the report documents that radiotherapy was stopped or permanently discontinued before the planned course was completed.",
+        "Assign null if treatment completion status is unknown or not documented."
+      ]
+    },
+    "radiationFields": {
+      "description": "Extract each distinct radiation treatment field or treatment component as a separate array element. There may be more than one field, for example whole-breast tangents plus a supraclavicular field and/or a tumor-bed boost. Assign null if radiotherapy field details are not available.",
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "object",
+        "properties": {
+          "dose": {
+            "description": "Extract the total prescribed or delivered dose for this radiation field/treatment component. Record the numeric value only and use doseUnit for the unit. Assign null if the field dose is unknown or not documented.",
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "doseUnit": {
+            "description": "Extract the unit associated with the dose for this field.",
+            "type": [
+              "string",
+              "null"
+            ],
+            "enum": [
+              "Gy",
+              "cGy",
+              null
+            ],
+            "enumDescriptions": [
+              "Assign 'Gy' if the dose is reported in gray.",
+              "Assign 'cGy' if the dose is reported in centigray.",
+              "Assign null if the dose unit is unknown or not documented."
+            ]
+          },
+          "fractions": {
+            "description": "Extract the number of radiation fractions delivered or prescribed for this field/treatment component. Assign null if the number of fractions is unknown or not documented.",
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "fieldType": {
+            "description": "Extract the anatomical field or treatment-field description for this component, for example tangential/tangents, whole breast, supraclavicular, axillary, internal mammary, or tumor bed. Preserve the documented terminology when possible. Assign null if field type is unknown or not documented.",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "radiationType": {
+            "description": "Extract the radiation modality or particle type used for this field.",
+            "type": [
+              "string",
+              "null"
+            ],
+            "enum": [
+              "photons",
+              "electrons",
+              "protons",
+              "other",
+              null
+            ],
+            "enumDescriptions": [
+              "Assign 'photons' for photon or x-ray treatment.",
+              "Assign 'electrons' for electron treatment.",
+              "Assign 'protons' for proton treatment.",
+              "Assign 'other' if another radiation type is explicitly documented.",
+              "Assign null if radiation type is unknown or not documented."
+            ]
+          },
+          "radiationEnergy": {
+            "description": "Extract the radiation energy for this field exactly as documented, including units when present, for example '6 MV', '10 MV', or '12 MeV'. Assign null if energy is unknown or not documented.",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "isBoost": {
+            "description": "Determine whether this radiation field/treatment component represents a boost dose, such as a tumor-bed or scar boost.",
+            "type": [
+              "string",
+              "null"
+            ],
+            "enum": [
+              "Y",
+              "N",
+              null
+            ],
+            "enumDescriptions": [
+              "Assign 'Y' if the field/component is explicitly documented as a boost.",
+              "Assign 'N' if the field/component is explicitly a non-boost component of the radiation course.",
+              "Assign null if boost status is unknown or cannot be determined."
+            ]
+          }
+        },
+        "required": [
+          "dose",
+          "doseUnit",
+          "fractions",
+          "fieldType",
+          "radiationType",
+          "radiationEnergy",
+          "isBoost"
+        ]
+      }
+    }
+  },
+  "required": [
+    "tnmStage",
+    "tnmStagingBasis",
+    "tStage",
+    "nStage",
+    "mStage",
+    "cancerLaterality",
+    "receivedRadiotherapy",
+    "receivedChemotherapy",
+    "chemotherapyDrugs",
+    "receivedSurgery",
+    "surgeryType",
+    "surgeryLaterality",
+    "radiotherapyStartDate",
+    "radiotherapyEndDate",
+    "toleratedTreatmentWell",
+    "treatmentReaction",
+    "treatmentCompletedAsPlanned",
+    "radiationFields"
+  ]
+}
