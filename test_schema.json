@@ -1,0 +1,69 @@
+{
+  "type": "object",
+  "properties": {
+    "cancerLaterality": {
+      "description": "Laterality of the breast cancer. Use L for left, R for right, B for bilateral, or null if unknown/not documented.",
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "L",
+        "R",
+        "B",
+        null
+      ]
+    },
+    "tnmStage": {
+      "description": "Combined documented TNM stage, for example cT2N0M0 or pT1cN0M0. Do not infer. Use null if not explicitly documented.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "radiotherapyReceived": {
+      "description": "Whether the patient received radiotherapy. Use Y if administered, N if explicitly not received, or null if unknown/not documented.",
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "Y",
+        "N",
+        null
+      ]
+    },
+    "chemotherapyReceived": {
+      "description": "Whether the patient received chemotherapy. Use Y if administered, N if explicitly not received, or null if unknown/not documented.",
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "Y",
+        "N",
+        null
+      ]
+    },
+    "surgeryReceived": {
+      "description": "Whether the patient underwent breast cancer surgery. Use Y if performed, N if explicitly not performed, or null if unknown/not documented.",
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "Y",
+        "N",
+        null
+      ]
+    }
+  },
+  "required": [
+    "cancerLaterality",
+    "tnmStage",
+    "radiotherapyReceived",
+    "chemotherapyReceived",
+    "surgeryReceived"
+  ],
+  "additionalProperties": false
+}

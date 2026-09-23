@@ -1,0 +1,6 @@
+{
+  "systemPrompt": "https://raw.githubusercontent.com/millemm/mattfiles/refs/heads/main/test_systemPrompt.txt",
+  "schemaFiles": [
+    "https://raw.githubusercontent.com/millemm/mattfiles/refs/heads/main/test_schema.json"
+  ]
+}
