@@ -2,6 +2,15 @@
   "@context": {
     "bct": "https://example.org/breast-cancer-treatment#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "PatientAge": {
+      "@id": "bct:PatientAge",
+      "@type": "xsd:integer"
+    },
+    "Stage": "bct:Stage",
+    "YearRadiotherapyBegin": {
+      "@id": "bct:YearRadiotherapyBegin",
+      "@type": "xsd:integer"
+    },
     "tnmStage": "bct:tnmStage",
     "tnmStagingBasis": "bct:tnmStagingBasis",
     "tStage": "bct:tStage",
@@ -9,35 +18,214 @@
     "mStage": "bct:mStage",
     "cancerLaterality": "bct:cancerLaterality",
     "receivedRadiotherapy": "bct:receivedRadiotherapy",
-    "receivedChemotherapy": "bct:receivedChemotherapy",
-    "chemotherapyDrugs": {
-      "@id": "bct:chemotherapyDrug",
-      "@container": "@set"
-    },
-    "receivedSurgery": "bct:receivedSurgery",
-    "surgeryType": "bct:surgeryType",
-    "surgeryLaterality": "bct:surgeryLaterality",
     "radiotherapyStartDate": "bct:radiotherapyStartDate",
     "radiotherapyEndDate": "bct:radiotherapyEndDate",
     "toleratedTreatmentWell": "bct:toleratedTreatmentWell",
     "treatmentReaction": "bct:treatmentReaction",
     "treatmentCompletedAsPlanned": "bct:treatmentCompletedAsPlanned",
+    "receivedSurgery": "bct:receivedSurgery",
+    "surgeryType": "bct:surgeryType",
+    "surgeryLaterality": "bct:surgeryLaterality",
+    "receivedChemotherapy": "bct:receivedChemotherapy",
+    "chemotherapyDrugs": {
+      "@id": "bct:chemotherapyDrug",
+      "@container": "@set"
+    },
+    "ChemoMentYN": {
+      "@id": "bct:ChemoMentYN",
+      "@type": "xsd:integer"
+    },
+    "ChemoYesSub": {
+      "@id": "bct:ChemoYesSub",
+      "@type": "xsd:integer"
+    },
+    "HormoneMentYN": {
+      "@id": "bct:HormoneMentYN",
+      "@type": "xsd:integer"
+    },
+    "HormoneYesSub": {
+      "@id": "bct:HormoneYesSub",
+      "@type": "xsd:integer"
+    },
+    "OthDrugsYN": {
+      "@id": "bct:OthDrugsYN",
+      "@type": "xsd:integer"
+    },
+    "OthDrugTEXT": "bct:OthDrugTEXT",
     "radiationFields": {
       "@id": "bct:radiationField",
       "@container": "@set"
     },
-    "dose": {
-      "@id": "bct:dose",
+    "DateBeg": "bct:DateBeg",
+    "DateEnd": "bct:DateEnd",
+    "BeamType": "bct:BeamType",
+    "MV": {
+      "@id": "bct:MV",
       "@type": "xsd:decimal"
     },
-    "doseUnit": "bct:doseUnit",
-    "fractions": {
-      "@id": "bct:fractions",
+    "MV_2": {
+      "@id": "bct:MV_2",
+      "@type": "xsd:decimal"
+    },
+    "MeV": {
+      "@id": "bct:MeV",
+      "@type": "xsd:decimal"
+    },
+    "MeV_2": {
+      "@id": "bct:MeV_2",
+      "@type": "xsd:decimal"
+    },
+    "KVP": {
+      "@id": "bct:KVP",
+      "@type": "xsd:decimal"
+    },
+    "Dual_MV": {
+      "@id": "bct:Dual_MV",
       "@type": "xsd:integer"
     },
-    "fieldType": "bct:fieldType",
-    "radiationType": "bct:radiationType",
-    "radiationEnergy": "bct:radiationEnergy",
-    "isBoost": "bct:isBoost"
+    "Dual_MeV": {
+      "@id": "bct:Dual_MeV",
+      "@type": "xsd:integer"
+    },
+    "HVL": "bct:HVL",
+    "ALcu": {
+      "@id": "bct:ALcu",
+      "@type": "xsd:integer"
+    },
+    "BeamOth": "bct:BeamOth",
+    "BeamOthTEXT": "bct:BeamOthTEXT",
+    "FldInFldYN": {
+      "@id": "bct:FldInFldYN",
+      "@type": "xsd:integer"
+    },
+    "ConformalYN": {
+      "@id": "bct:ConformalYN",
+      "@type": "xsd:integer"
+    },
+    "IMRTyn": {
+      "@id": "bct:IMRTyn",
+      "@type": "xsd:integer"
+    },
+    "HalfBeamBlkYN": {
+      "@id": "bct:HalfBeamBlkYN",
+      "@type": "xsd:integer"
+    },
+    "PartBreastYN": {
+      "@id": "bct:PartBreastYN",
+      "@type": "xsd:integer"
+    },
+    "SpecTechOth": {
+      "@id": "bct:SpecTechOth",
+      "@type": "xsd:integer"
+    },
+    "STechOthTEXT": "bct:STechOthTEXT",
+    "TreatTech": "bct:TreatTech",
+    "wide": {
+      "@id": "bct:wide",
+      "@type": "xsd:decimal"
+    },
+    "high": {
+      "@id": "bct:high",
+      "@type": "xsd:decimal"
+    },
+    "Field": "bct:Field",
+    "TangNotWholeYes": {
+      "@id": "bct:TangNotWholeYes",
+      "@type": "xsd:integer"
+    },
+    "TangPartTEXT": "bct:TangPartTEXT",
+    "Surgery": {
+      "@id": "bct:Surgery",
+      "@type": "xsd:integer"
+    },
+    "AnglesYN": {
+      "@id": "bct:AnglesYN",
+      "@type": "xsd:integer"
+    },
+    "FldAngle_Med": {
+      "@id": "bct:FldAngle_Med",
+      "@type": "xsd:decimal"
+    },
+    "FldAngle_Lat": {
+      "@id": "bct:FldAngle_Lat",
+      "@type": "xsd:decimal"
+    },
+    "WedgeInfoYes": {
+      "@id": "bct:WedgeInfoYes",
+      "@type": "xsd:integer"
+    },
+    "WedgeAngle": {
+      "@id": "bct:WedgeAngle",
+      "@type": "xsd:decimal"
+    },
+    "WedgeFld": {
+      "@id": "bct:WedgeFld",
+      "@type": "xsd:integer"
+    },
+    "WedgeAngle_2": {
+      "@id": "bct:WedgeAngle_2",
+      "@type": "xsd:decimal"
+    },
+    "WedgeFld_2": {
+      "@id": "bct:WedgeFld_2",
+      "@type": "xsd:integer"
+    },
+    "WedgeDuration": "bct:WedgeDuration",
+    "ScarBoostYN": {
+      "@id": "bct:ScarBoostYN",
+      "@type": "xsd:integer"
+    },
+    "FldCtrBreast": {
+      "@id": "bct:FldCtrBreast",
+      "@type": "xsd:integer"
+    },
+    "ScarOthTEXT": "bct:ScarOthTEXT",
+    "OthSite": "bct:OthSite",
+    "FieldDescription": "bct:FieldDescription",
+    "Lat": {
+      "@id": "bct:Lat",
+      "@type": "xsd:integer"
+    },
+    "Config": "bct:Config",
+    "OthConfig": "bct:OthConfig",
+    "Dose": {
+      "@id": "bct:Dose",
+      "@type": "xsd:decimal"
+    },
+    "DoseUnit": "bct:DoseUnit",
+    "Def": {
+      "@id": "bct:Def",
+      "@type": "xsd:integer"
+    },
+    "Tdepth": "bct:Tdepth",
+    "FracYN": {
+      "@id": "bct:FracYN",
+      "@type": "xsd:integer"
+    },
+    "NumFrac": {
+      "@id": "bct:NumFrac",
+      "@type": "xsd:integer"
+    },
+    "DailyFracDose": {
+      "@id": "bct:DailyFracDose",
+      "@type": "xsd:decimal"
+    },
+    "MachineName": {
+      "@id": "bct:MachineName",
+      "@type": "xsd:integer"
+    },
+    "MachineTEXT": "bct:MachineTEXT",
+    "Comments": {
+      "@id": "bct:Comments",
+      "@type": "xsd:integer"
+    },
+    "CommentTEXT": "bct:CommentTEXT",
+    "DatesOff": {
+      "@id": "bct:DatesOff",
+      "@type": "xsd:boolean"
+    },
+    "DateOffComment": "bct:DateOffComment",
+    "RadDate": "bct:RadDate",
+    "Where": "bct:Where"
   }
 }
