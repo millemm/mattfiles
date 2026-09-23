@@ -1,9 +1,9 @@
 {
-  "systemPrompt": "https://github.com/millemm/mattfiles/blob/main/breast_cancer_treatment_systemPrompt.txt",
+  "systemPrompt": "https://raw.githubusercontent.com/millemm/mattfiles/blob/main/breast_cancer_treatment_systemPrompt.txt",
   "schemaFiles": [
-    "https://github.com/millemm/mattfiles/blob/main/breast_cancer_treatment_schema.json"
+    "https://raw.githubusercontent.com/millemm/mattfiles/blob/main/breast_cancer_treatment_schema.json"
   ],
   "jsonldContextFiles": [
-    "https://github.com/millemm/mattfiles/blob/main/breast_cancer_treatment_context.json"
+    "https://raw.githubusercontent.com/millemm/mattfiles/blob/main/breast_cancer_treatment_context.json"
   ]
 }
