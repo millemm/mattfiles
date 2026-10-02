@@ -1,0 +1,1069 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://example.org/radiotherapy-summary-abstraction.schema.json",
+  "title": "Radiotherapy Summary Abstraction",
+  "description": "Structured abstraction schema for radiotherapy summary reports. Patient/report-level variables are stored once; radiotherapy technical variables are nested by distinct treatment field/series/component.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "SubjectID": {
+      "description": "Patient Study ID from the medical record. Preserve exactly as documented.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "TreatmentCenterCode": {
+      "description": "Treatment center code for the hospital where the patient was treated, if documented.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "HospitalName": {
+      "description": "Name of the hospital where the patient was treated, if documented.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "PatientAge": {
+      "description": "Patient age in completed years when documented. Do not calculate unless the source explicitly supplies enough information and the age at the relevant treatment time is unambiguous.",
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "CancerStage": {
+      "description": "Overall breast cancer stage/group when explicitly documented (for example 0, I, IA, IB, II, IIA, IIB, III, IIIA, IIIB, IIIC, IV). Preserve the documented stage designation without deriving it from TNM or other findings. Use null when no overall stage/group is documented.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "tnmStage": {
+      "description": "Combined TNM stage exactly as explicitly documented, including clinical/pathologic prefixes and subcategories when present (for example cT2N1M0 or pT1cN0M0). Do not construct a combined TNM value from separate T/N/M findings unless the combined designation itself is documented.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "tnmStagingBasis": {
+      "description": "Basis of the documented TNM staging: clinical when explicitly cTNM/clinical, pathologic when explicitly pTNM/pathologic. Use null when mixed, ambiguous, or not documented.",
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "clinical",
+        "pathologic",
+        null
+      ]
+    },
+    "tStage": {
+      "description": "Documented breast cancer T category, including prefix and subcategory when present (for example cT2, pT1c, ypT0). Do not infer from tumor size.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "nStage": {
+      "description": "Documented breast cancer N category, including prefix and subcategory when present (for example cN1, pN0, ypN1a). Do not infer from node counts or pathology findings unless the N category is explicitly documented.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "mStage": {
+      "description": "Documented breast cancer M category, including prefix/subcategory when present (for example cM0, M1). Do not infer M0 from a negative metastatic workup unless the M category is explicitly documented.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "ReceivedRadiotherapy": {
+      "description": "Was radiotherapy actually administered? 1=yes, 0=no, 99=unknown.",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "enum": [
+        1,
+        0,
+        99,
+        null
+      ]
+    },
+    "ToleratedXRTWell": {
+      "description": "Did the record explicitly indicate that radiotherapy was tolerated well? 1=yes, 0=no, 99=unknown, -1=not applicable.",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "enum": [
+        1,
+        0,
+        99,
+        -1,
+        null
+      ]
+    },
+    "XRTReaction": {
+      "description": "If radiotherapy was not tolerated well, describe the documented treatment reaction/toxicity. Otherwise null.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "XRTCompletedAsPlanned": {
+      "description": "Was the planned radiotherapy course completed rather than stopped early? 1=yes, 0=no, 99=unknown, -1=not applicable.",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "enum": [
+        1,
+        0,
+        99,
+        -1,
+        null
+      ]
+    },
+    "Surgery": {
+      "description": "Breast cancer surgery prior to radiotherapy: 1=lumpectomy, 2=mastectomy, 9=unknown type, 0=no prior breast cancer surgery.",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "enum": [
+        1,
+        2,
+        9,
+        0,
+        null
+      ]
+    },
+    "SurgeryLaterality": {
+      "description": "Laterality of breast surgery: 1=right, 2=left, 3=bilateral, 9=unknown, -1=not applicable because Surgery=0.",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "enum": [
+        1,
+        2,
+        3,
+        9,
+        -1,
+        null
+      ]
+    },
+    "ChemoMentionedYN": {
+      "description": "Was chemotherapy mentioned in the record or recommended to the patient? 1=yes, 0=no.",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "enum": [
+        1,
+        0,
+        null
+      ]
+    },
+    "ChemoYesSub": {
+      "description": "Chemotherapy status: 11=given, 12=planned, 10=no chemotherapy given, 19=unsure/unknown whether planned or administered.",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "enum": [
+        11,
+        12,
+        10,
+        19,
+        null
+      ]
+    },
+    "ChemoDrugsTEXT": {
+      "description": "Names of chemotherapy drugs explicitly documented. Use 'unknown' if chemotherapy was given/planned but drug names are explicitly unknown; otherwise null when not applicable or not documented.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "HormoneMentYN": {
+      "description": "Was hormonal therapy mentioned in the medical record? 1=yes, 0=no.",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "enum": [
+        1,
+        0,
+        null
+      ]
+    },
+    "HormoneYesSub": {
+      "description": "Hormonal therapy status: 11=given, 12=planned, 10=no hormonal therapy given, 19=unsure/unknown whether planned or administered.",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "enum": [
+        11,
+        12,
+        10,
+        19,
+        null
+      ]
+    },
+    "HormoneDrugsTEXT": {
+      "description": "Names of hormonal therapy drugs explicitly documented. Use 'unknown' if applicable but drug names are explicitly unknown; otherwise null when not applicable or not documented.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "OthDrugsYN": {
+      "description": "Were other drugs (not chemotherapy or hormonal therapy) mentioned in the summary? 1=yes, 0=no.",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "enum": [
+        1,
+        0,
+        null
+      ]
+    },
+    "OtherDrugsTEXT": {
+      "description": "Names of other drugs explicitly documented. Use 'unknown' if applicable but drug names are explicitly unknown; otherwise null when OthDrugsYN=0 or not documented.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "radiationFields": {
+      "description": "One array element per distinct coded radiotherapy field, field pair, or treatment series/component. All dates, dose, energy, geometry, technique, laterality, and other technical values for a treatment component must remain together in the same object. A paired-beam configuration such as medial+lateral tangents remains one element when documented as one treatment series.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "DateBeg": {
+            "description": "Beginning date for this distinct radiotherapy field/series/component in MM/DD/YYYY when a complete date is documented.",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "DateEnd": {
+            "description": "Ending date for this distinct radiotherapy field/series/component in MM/DD/YYYY when a complete date is documented.",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "BeamType": {
+            "description": "Radiotherapy treatment type: 04=photon, 07=electron, 02=Co-60, 03=Cs-137, 01=orthovoltage, 77=brachytherapy (including Ir-192, AccuBoost, Xoft, or electronic), 88=other, 99=unknown.",
+            "type": [
+              "string",
+              "null"
+            ],
+            "enum": [
+              "04",
+              "07",
+              "02",
+              "03",
+              "01",
+              "77",
+              "88",
+              "99",
+              null
+            ]
+          },
+          "MV": {
+            "description": "Photon energy in MV for the first or only photon energy. 99=unknown, -1=not applicable when BeamType is not 04.",
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "Dual_MV": {
+            "description": "Was the patient treated with two photon energies in this series? 1=yes, 0=no/not mentioned, -1=not applicable when BeamType is not 04.",
+            "type": [
+              "integer",
+              "null"
+            ],
+            "enum": [
+              1,
+              0,
+              -1,
+              null
+            ]
+          },
+          "MV_2": {
+            "description": "Second photon energy in MV when relevant. 99=unknown, -1=not applicable when no second photon energy or BeamType is not 04.",
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "MeV": {
+            "description": "Electron energy in MeV for the first or only electron energy. 99=unknown, -1=not applicable when BeamType is not 07.",
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "Dual_MeV": {
+            "description": "Was the patient treated with two electron energies in this series? 1=yes, 0=no/not mentioned, -1=not applicable when BeamType is not 07.",
+            "type": [
+              "integer",
+              "null"
+            ],
+            "enum": [
+              1,
+              0,
+              -1,
+              null
+            ]
+          },
+          "MeV_2": {
+            "description": "Second electron energy in MeV when relevant. 99=unknown, -1=not applicable when no second electron energy or BeamType is not 07.",
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "KVP": {
+            "description": "Orthovoltage beam energy in kVp. 99=unknown, -1=not applicable when BeamType is not 01.",
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "HVL": {
+            "description": "Orthovoltage half-value layer in mm. 99=unknown, -1=not applicable when BeamType is not 01.",
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "ALcu": {
+            "description": "Orthovoltage half-value-layer material: 1=Al, 2=Cu, 99=unknown, -1=not applicable when BeamType is not 01.",
+            "type": [
+              "integer",
+              "null"
+            ],
+            "enum": [
+              1,
+              2,
+              99,
+              -1,
+              null
+            ]
+          },
+          "FldInFldYN": {
+            "description": "Field-in-field technique noted? 1=yes, 0=no/not noted.",
+            "type": [
+              "integer",
+              "null"
+            ],
+            "enum": [
+              1,
+              0,
+              null
+            ]
+          },
+          "ConformalYN": {
+            "description": "Conformal beam radiation therapy mentioned? 1=yes, 0=no/not noted.",
+            "type": [
+              "integer",
+              "null"
+            ],
+            "enum": [
+              1,
+              0,
+              null
+            ]
+          },
+          "IMRTyn": {
+            "description": "Intensity-modulated radiation therapy mentioned? 1=yes, 0=no/not noted.",
+            "type": [
+              "integer",
+              "null"
+            ],
+            "enum": [
+              1,
+              0,
+              null
+            ]
+          },
+          "HalfBeamBlkYN": {
+            "description": "Half-beam block used? 1=yes, 0=no/not noted.",
+            "type": [
+              "integer",
+              "null"
+            ],
+            "enum": [
+              1,
+              0,
+              null
+            ]
+          },
+          "PartBreastYN": {
+            "description": "Partial-breast treatment? 1=yes, 0=no/not noted.",
+            "type": [
+              "integer",
+              "null"
+            ],
+            "enum": [
+              1,
+              0,
+              null
+            ]
+          },
+          "SRSyn": {
+            "description": "Stereotactic radiosurgery mentioned? 1=yes, 0=no/not noted.",
+            "type": [
+              "integer",
+              "null"
+            ],
+            "enum": [
+              1,
+              0,
+              null
+            ]
+          },
+          "IORTyn": {
+            "description": "Intraoperative radiation therapy mentioned? 1=yes, 0=no/not noted.",
+            "type": [
+              "integer",
+              "null"
+            ],
+            "enum": [
+              1,
+              0,
+              null
+            ]
+          },
+          "TreatTech": {
+            "description": "Treatment setup technique: SSD, SAD, or 9=unknown.",
+            "type": [
+              "string",
+              "null"
+            ],
+            "enum": [
+              "SSD",
+              "SAD",
+              "9",
+              null
+            ]
+          },
+          "wide": {
+            "description": "Treatment field width in mm, left-to-right dimension.",
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "high": {
+            "description": "Treatment field height in mm, head-to-toe dimension.",
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "Field": {
+            "description": "Three-digit treatment field code. Use the coded value whose description best matches the documented treatment field; do not infer a more specific field than the record supports.",
+            "type": [
+              "string",
+              "null"
+            ],
+            "enum": [
+              "100",
+              "101",
+              "102",
+              "103",
+              "109",
+              "110",
+              "111",
+              "112",
+              "113",
+              "114",
+              "115",
+              "116",
+              "119",
+              "120",
+              "121",
+              "122",
+              "123",
+              "130",
+              "200",
+              "201",
+              "202",
+              "210",
+              "220",
+              "221",
+              "300",
+              "301",
+              "302",
+              "303",
+              "310",
+              "311",
+              "312",
+              "313",
+              "320",
+              "330",
+              "331",
+              "350",
+              "351",
+              "352",
+              "353",
+              "354",
+              "360",
+              "390",
+              "391",
+              "400",
+              "401",
+              "410",
+              "420",
+              "499",
+              "500",
+              "520",
+              "530",
+              "540",
+              "550",
+              "551",
+              "552",
+              "553",
+              "554",
+              "555",
+              "599",
+              "610",
+              "611",
+              "612",
+              "613",
+              "614",
+              "620",
+              "621",
+              "622",
+              "623",
+              "624",
+              "625",
+              "700",
+              "703",
+              "706",
+              "710",
+              "720",
+              "730",
+              "770",
+              "771",
+              "772",
+              "773",
+              "774",
+              "780",
+              "790",
+              "791",
+              "792",
+              "793",
+              "794",
+              "795",
+              "796",
+              "797",
+              "798",
+              "799",
+              "999",
+              null
+            ],
+            "enumDescriptions": [
+              "100 = Brain",
+              "101 = Whole Brain",
+              "102 = Posterior Fossa",
+              "103 = Vertex (top of head)",
+              "109 = Brain, not otherwise specified",
+              "110 = Other head (not brain)",
+              "111 = Waldeyer's ring",
+              "112 = Face",
+              "113 = Eye / Orbit",
+              "114 = Mandible",
+              "115 = Nose",
+              "116 = Eye / Nasal",
+              "119 = Other Head, not otherwise specified",
+              "120 = Head and neck",
+              "121 = Whole brain and neck (helmet)",
+              "122 = Whole brain, neck and T-spine",
+              "123 = Whole Brain, Neck, CNS Axis",
+              "130 = Posterior brain and spine (banjo)",
+              "200 = Neck",
+              "201 = Neck and Supraclav",
+              "202 = Submental",
+              "210 = Thyroid I-123",
+              "220 = Neck and chest",
+              "221 = T-shaped mantle",
+              "300 = Chest",
+              "301 = Whole Chest/Wilms",
+              "302 = Breast",
+              "303 = Chest wall boost with TBI",
+              "310 = Supraclavicular lymph nodes (supraclav)",
+              "311 = Supraclavicular lymph nodes + internal mammary chain (IMC) (hockey stick)",
+              "312 = Anterior supraclavicular lymph nodes + posterior axillary boost (PAB)",
+              "313 = Large supraclav and chest wall",
+              "320 = Axilla",
+              "330 = Mantle",
+              "331 = Mantle with mediastinum & lung blocked",
+              "350 = Breast/chestwall/scar (typically boost)",
+              "351 = Tangential breast",
+              "352 = Regional nodes - breast - not otherwise specified",
+              "353 = Breast/chest wall drain site",
+              "354 = Breast brachytherapy",
+              "360 = Mediastinum",
+              "390 = Chest and abdomen",
+              "391 = Whole chest and one side of abdomen",
+              "400 = Abdomen",
+              "401 = Wilms (Kidney)",
+              "410 = Para-aortic abdomen",
+              "420 = Spleen/pedicle",
+              "499 = Abdomen not otherwise specified",
+              "500 = Pelvis",
+              "520 = V-Pelvis",
+              "530 = Inguinal",
+              "540 = Testicular",
+              "550 = Perineal field",
+              "551 = Perineal - GI(cx)",
+              "552 = Gluteal",
+              "553 = Transvaginal Cone",
+              "554 = Sacral cervix field",
+              "555 = Brachy Implant",
+              "599 = Pelvis not otherwise specified",
+              "610 = Arm",
+              "611 = Shoulder",
+              "612 = Upper arm",
+              "613 = Lower arm",
+              "614 = Hands",
+              "620 = Leg",
+              "621 = Upper femur / pelvis",
+              "622 = Lower femur",
+              "623 = Lower leg / ankle",
+              "624 = Femur",
+              "625 = Foot",
+              "700 = Abdomen + pelvis",
+              "703 = Trunk",
+              "706 = Whole abdomen + Pelvis",
+              "710 = Inverted Y",
+              "720 = Spade",
+              "730 = Dogleg (abdomen + one side of pelvis)",
+              "770 = Total body",
+              "771 = Sanctuary",
+              "772 = Hemi-body (upper or lower)",
+              "773 = Sanctuary-full spine",
+              "774 = Sanctuary-full spine less abdomen",
+              "780 = Total skin",
+              "790 = Spine",
+              "791 = Total Spine",
+              "792 = Cervical spine",
+              "793 = Cervical & thoracic spine",
+              "794 = Thoracic spine",
+              "795 = Thoracic & lumbar spine",
+              "796 = Lumbar spine",
+              "797 = Lumbar & sacral spine",
+              "798 = Sacrum",
+              "799 = Spine not otherwise specified",
+              "999 = Unknown",
+              "null = not documented"
+            ]
+          },
+          "TangNotWholeYes": {
+            "description": "Is this a tangential field that treats only part of the breast? 1=yes, 0=no/not mentioned.",
+            "type": [
+              "integer",
+              "null"
+            ],
+            "enum": [
+              1,
+              0,
+              null
+            ]
+          },
+          "TangPartTEXT": {
+            "description": "Text description of the part of the breast treated by the small tangential field. Null when not applicable/not documented.",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "AnglesYN": {
+            "description": "Are tangential beam angles known from the record? 1=yes, 0=no, -1=not applicable when BeamType is not 04 or Field is not 351.",
+            "type": [
+              "integer",
+              "null"
+            ],
+            "enum": [
+              1,
+              0,
+              -1,
+              null
+            ]
+          },
+          "FldAngle_Med": {
+            "description": "Medial tangential angle in degrees. 777=angles known but not identified as medial versus lateral; 99=unknown; -1=not applicable.",
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "FldAngle_Lat": {
+            "description": "Lateral tangential angle in degrees. 777=angles known but not identified as medial versus lateral; 99=unknown; -1=not applicable.",
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "WedgeInfoYes": {
+            "description": "Were wedges used? 1=yes, 0=no/not mentioned, -1=not applicable when BeamType is not 04 or Field is not 351.",
+            "type": [
+              "integer",
+              "null"
+            ],
+            "enum": [
+              1,
+              0,
+              -1,
+              null
+            ]
+          },
+          "WedgeAngle": {
+            "description": "First wedge angle in degrees. 99=unknown, -1=not applicable.",
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "WedgeFld": {
+            "description": "Field(s) using WedgeAngle: 1=medial only, 2=lateral only, 3=medial and lateral, 9=unknown.",
+            "type": [
+              "integer",
+              "null"
+            ],
+            "enum": [
+              1,
+              2,
+              3,
+              9,
+              null
+            ]
+          },
+          "WedgeAngle_2": {
+            "description": "Second wedge angle in degrees when more than one wedge angle was used. 99=unknown, -1=not applicable.",
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "WedgeFld_2": {
+            "description": "Field using WedgeAngle_2: 1=medial only, 2=lateral only, 9=unknown.",
+            "type": [
+              "integer",
+              "null"
+            ],
+            "enum": [
+              1,
+              2,
+              9,
+              null
+            ]
+          },
+          "WedgeDuration": {
+            "description": "Duration of wedge use: 1=whole treatment, 2=part of treatment, 9=unknown.",
+            "type": [
+              "integer",
+              "null"
+            ],
+            "enum": [
+              1,
+              2,
+              9,
+              null
+            ]
+          },
+          "ScarBoostYN": {
+            "description": "Is this a breast/chest-wall/scar boost field? 1=yes; null=no/not documented, preserving the legacy blank=no convention.",
+            "type": [
+              "integer",
+              "null"
+            ],
+            "enum": [
+              1,
+              null
+            ]
+          },
+          "FldCtrBreast": {
+            "description": "Center for fields coded 350: 1=UIQ, 2=LIQ, 3=UOQ, 4=LOQ, 5=middle, 6=inner breast, 7=outer breast, 8=other, 9=unknown, -1=not applicable.",
+            "type": [
+              "integer",
+              "null"
+            ],
+            "enum": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              -1,
+              null
+            ]
+          },
+          "Lat": {
+            "description": "Laterality of this treatment: 1=right, 2=left, 3=bilateral, 4=central, 9=unknown.",
+            "type": [
+              "integer",
+              "null"
+            ],
+            "enum": [
+              1,
+              2,
+              3,
+              4,
+              9,
+              null
+            ]
+          },
+          "Config": {
+            "description": "Configuration of this treatment field using the legacy configuration code. When Config=88, describe the configuration in OthConfig.",
+            "type": [
+              "string",
+              "null"
+            ],
+            "enum": [
+              "01",
+              "12",
+              "02",
+              "62",
+              "66",
+              "03",
+              "63",
+              "04",
+              "64",
+              "65",
+              "06",
+              "09",
+              "08",
+              "07",
+              "17",
+              "27",
+              "15",
+              "10",
+              "88",
+              "99",
+              null
+            ],
+            "enumDescriptions": [
+              "01 = A & P - anterior and posterior parallel opposed",
+              "12 = A & P Obl - anterior and posterior oblique",
+              "02 = A only - anterior only, straight on",
+              "62 = Ant Obl - anterior only, oblique",
+              "66 = Ant & Lat - anterior plus lateral from direction stated in laterality",
+              "03 = P only - posterior only, straight on",
+              "63 = Post Obl - posterior only, oblique",
+              "04 = Lateral(s) - lateral from direction stated in laterality",
+              "64 = Lat Obl Pair - lateral oblique pair on side stated in laterality",
+              "65 = Lat Obl One - lateral oblique single field on side stated in laterality",
+              "06 = M & L Tang - medial and lateral tangential pair to side stated in laterality",
+              "09 = Med Tang - medial tangential only",
+              "08 = Lat Tang - lateral tangential only",
+              "07 = Inf & Sup - inferior and superior field pair",
+              "17 = Inf - inferior field",
+              "27 = Sup - superior field",
+              "15 = Moving Strip",
+              "10 = Direct - straight on field to target",
+              "88 = Other - configuration specified in OthConfig",
+              "99 = Unknown configuration",
+              "null = not documented"
+            ]
+          },
+          "OthConfig": {
+            "description": "Other/replacement configuration description when Config=88. Otherwise null.",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "Dose": {
+            "description": "Dose to this field/series in cGy. Convert a documented Gy value to cGy (Gy x 100) when necessary.",
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "Def": {
+            "description": "Dose definition: 3=tumor dose at depth, 2=given dose at dmax, 9=unknown.",
+            "type": [
+              "integer",
+              "null"
+            ],
+            "enum": [
+              3,
+              2,
+              9,
+              null
+            ]
+          },
+          "Tdepth": {
+            "description": "Depth of tumor dose in cm when known; otherwise null.",
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "FracYN": {
+            "description": "Is a fractionation schedule available in the medical record? 1=yes, 0=no.",
+            "type": [
+              "integer",
+              "null"
+            ],
+            "enum": [
+              1,
+              0,
+              null
+            ]
+          },
+          "NumFrac": {
+            "description": "Number of fractions. Extract when stated; calculate only when the record provides an unambiguous arithmetic basis (for example total dose and dose per fraction).",
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "DailyFracDose": {
+            "description": "Dose per fraction in cGy. Extract when stated; calculate only when the record provides an unambiguous arithmetic basis (for example total dose and number of fractions).",
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "MachineName": {
+            "description": "Is the treatment machine name known? 1=yes, 0=no.",
+            "type": [
+              "integer",
+              "null"
+            ],
+            "enum": [
+              1,
+              0,
+              null
+            ]
+          },
+          "MachineTEXT": {
+            "description": "Text name of the treatment machine, including manufacturer/model when documented.",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "Comments": {
+            "description": "Are additional field/series comments present? 1=yes, 0=no.",
+            "type": [
+              "integer",
+              "null"
+            ],
+            "enum": [
+              1,
+              0,
+              null
+            ]
+          },
+          "CommentTEXT": {
+            "description": "Additional comments specific to this radiotherapy field/series/component.",
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "DateBeg",
+          "DateEnd",
+          "BeamType",
+          "MV",
+          "Dual_MV",
+          "MV_2",
+          "MeV",
+          "Dual_MeV",
+          "MeV_2",
+          "KVP",
+          "HVL",
+          "ALcu",
+          "FldInFldYN",
+          "ConformalYN",
+          "IMRTyn",
+          "HalfBeamBlkYN",
+          "PartBreastYN",
+          "SRSyn",
+          "IORTyn",
+          "TreatTech",
+          "wide",
+          "high",
+          "Field",
+          "TangNotWholeYes",
+          "TangPartTEXT",
+          "AnglesYN",
+          "FldAngle_Med",
+          "FldAngle_Lat",
+          "WedgeInfoYes",
+          "WedgeAngle",
+          "WedgeFld",
+          "WedgeAngle_2",
+          "WedgeFld_2",
+          "WedgeDuration",
+          "ScarBoostYN",
+          "FldCtrBreast",
+          "Lat",
+          "Config",
+          "OthConfig",
+          "Dose",
+          "Def",
+          "Tdepth",
+          "FracYN",
+          "NumFrac",
+          "DailyFracDose",
+          "MachineName",
+          "MachineTEXT",
+          "Comments",
+          "CommentTEXT"
+        ]
+      }
+    }
+  },
+  "required": [
+    "SubjectID",
+    "TreatmentCenterCode",
+    "HospitalName",
+    "PatientAge",
+    "CancerStage",
+    "tnmStage",
+    "tnmStagingBasis",
+    "tStage",
+    "nStage",
+    "mStage",
+    "ReceivedRadiotherapy",
+    "ToleratedXRTWell",
+    "XRTReaction",
+    "XRTCompletedAsPlanned",
+    "Surgery",
+    "SurgeryLaterality",
+    "ChemoMentionedYN",
+    "ChemoYesSub",
+    "ChemoDrugsTEXT",
+    "HormoneMentYN",
+    "HormoneYesSub",
+    "HormoneDrugsTEXT",
+    "OthDrugsYN",
+    "OtherDrugsTEXT",
+    "radiationFields"
+  ]
+}

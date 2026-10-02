@@ -1,0 +1,302 @@
+{
+  "@context": {
+    "rt": "https://example.org/radiotherapy-summary#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "SubjectID": {
+      "@id": "rt:SubjectID",
+      "@type": "xsd:string"
+    },
+    "TreatmentCenterCode": {
+      "@id": "rt:TreatmentCenterCode",
+      "@type": "xsd:string"
+    },
+    "HospitalName": {
+      "@id": "rt:HospitalName",
+      "@type": "xsd:string"
+    },
+    "PatientAge": {
+      "@id": "rt:PatientAge",
+      "@type": "xsd:integer"
+    },
+    "CancerStage": {
+      "@id": "rt:CancerStage",
+      "@type": "xsd:string"
+    },
+    "tnmStage": {
+      "@id": "rt:tnmStage",
+      "@type": "xsd:string"
+    },
+    "tnmStagingBasis": {
+      "@id": "rt:tnmStagingBasis",
+      "@type": "xsd:string"
+    },
+    "tStage": {
+      "@id": "rt:tStage",
+      "@type": "xsd:string"
+    },
+    "nStage": {
+      "@id": "rt:nStage",
+      "@type": "xsd:string"
+    },
+    "mStage": {
+      "@id": "rt:mStage",
+      "@type": "xsd:string"
+    },
+    "ReceivedRadiotherapy": {
+      "@id": "rt:ReceivedRadiotherapy",
+      "@type": "xsd:integer"
+    },
+    "ToleratedXRTWell": {
+      "@id": "rt:ToleratedXRTWell",
+      "@type": "xsd:integer"
+    },
+    "XRTReaction": {
+      "@id": "rt:XRTReaction",
+      "@type": "xsd:string"
+    },
+    "XRTCompletedAsPlanned": {
+      "@id": "rt:XRTCompletedAsPlanned",
+      "@type": "xsd:integer"
+    },
+    "Surgery": {
+      "@id": "rt:Surgery",
+      "@type": "xsd:integer"
+    },
+    "SurgeryLaterality": {
+      "@id": "rt:SurgeryLaterality",
+      "@type": "xsd:integer"
+    },
+    "ChemoMentionedYN": {
+      "@id": "rt:ChemoMentionedYN",
+      "@type": "xsd:integer"
+    },
+    "ChemoYesSub": {
+      "@id": "rt:ChemoYesSub",
+      "@type": "xsd:integer"
+    },
+    "ChemoDrugsTEXT": {
+      "@id": "rt:ChemoDrugsTEXT",
+      "@type": "xsd:string"
+    },
+    "HormoneMentYN": {
+      "@id": "rt:HormoneMentYN",
+      "@type": "xsd:integer"
+    },
+    "HormoneYesSub": {
+      "@id": "rt:HormoneYesSub",
+      "@type": "xsd:integer"
+    },
+    "HormoneDrugsTEXT": {
+      "@id": "rt:HormoneDrugsTEXT",
+      "@type": "xsd:string"
+    },
+    "OthDrugsYN": {
+      "@id": "rt:OthDrugsYN",
+      "@type": "xsd:integer"
+    },
+    "OtherDrugsTEXT": {
+      "@id": "rt:OtherDrugsTEXT",
+      "@type": "xsd:string"
+    },
+    "radiationFields": {
+      "@id": "rt:radiationField",
+      "@container": "@set"
+    },
+    "DateBeg": {
+      "@id": "rt:DateBeg",
+      "@type": "xsd:string"
+    },
+    "DateEnd": {
+      "@id": "rt:DateEnd",
+      "@type": "xsd:string"
+    },
+    "BeamType": {
+      "@id": "rt:BeamType",
+      "@type": "xsd:string"
+    },
+    "MV": {
+      "@id": "rt:MV",
+      "@type": "xsd:decimal"
+    },
+    "Dual_MV": {
+      "@id": "rt:Dual_MV",
+      "@type": "xsd:integer"
+    },
+    "MV_2": {
+      "@id": "rt:MV_2",
+      "@type": "xsd:decimal"
+    },
+    "MeV": {
+      "@id": "rt:MeV",
+      "@type": "xsd:decimal"
+    },
+    "Dual_MeV": {
+      "@id": "rt:Dual_MeV",
+      "@type": "xsd:integer"
+    },
+    "MeV_2": {
+      "@id": "rt:MeV_2",
+      "@type": "xsd:decimal"
+    },
+    "KVP": {
+      "@id": "rt:KVP",
+      "@type": "xsd:decimal"
+    },
+    "HVL": {
+      "@id": "rt:HVL",
+      "@type": "xsd:decimal"
+    },
+    "ALcu": {
+      "@id": "rt:ALcu",
+      "@type": "xsd:integer"
+    },
+    "FldInFldYN": {
+      "@id": "rt:FldInFldYN",
+      "@type": "xsd:integer"
+    },
+    "ConformalYN": {
+      "@id": "rt:ConformalYN",
+      "@type": "xsd:integer"
+    },
+    "IMRTyn": {
+      "@id": "rt:IMRTyn",
+      "@type": "xsd:integer"
+    },
+    "HalfBeamBlkYN": {
+      "@id": "rt:HalfBeamBlkYN",
+      "@type": "xsd:integer"
+    },
+    "PartBreastYN": {
+      "@id": "rt:PartBreastYN",
+      "@type": "xsd:integer"
+    },
+    "SRSyn": {
+      "@id": "rt:SRSyn",
+      "@type": "xsd:integer"
+    },
+    "IORTyn": {
+      "@id": "rt:IORTyn",
+      "@type": "xsd:integer"
+    },
+    "TreatTech": {
+      "@id": "rt:TreatTech",
+      "@type": "xsd:string"
+    },
+    "wide": {
+      "@id": "rt:wide",
+      "@type": "xsd:decimal"
+    },
+    "high": {
+      "@id": "rt:high",
+      "@type": "xsd:decimal"
+    },
+    "Field": {
+      "@id": "rt:Field",
+      "@type": "xsd:string"
+    },
+    "TangNotWholeYes": {
+      "@id": "rt:TangNotWholeYes",
+      "@type": "xsd:integer"
+    },
+    "TangPartTEXT": {
+      "@id": "rt:TangPartTEXT",
+      "@type": "xsd:string"
+    },
+    "AnglesYN": {
+      "@id": "rt:AnglesYN",
+      "@type": "xsd:integer"
+    },
+    "FldAngle_Med": {
+      "@id": "rt:FldAngle_Med",
+      "@type": "xsd:decimal"
+    },
+    "FldAngle_Lat": {
+      "@id": "rt:FldAngle_Lat",
+      "@type": "xsd:decimal"
+    },
+    "WedgeInfoYes": {
+      "@id": "rt:WedgeInfoYes",
+      "@type": "xsd:integer"
+    },
+    "WedgeAngle": {
+      "@id": "rt:WedgeAngle",
+      "@type": "xsd:decimal"
+    },
+    "WedgeFld": {
+      "@id": "rt:WedgeFld",
+      "@type": "xsd:integer"
+    },
+    "WedgeAngle_2": {
+      "@id": "rt:WedgeAngle_2",
+      "@type": "xsd:decimal"
+    },
+    "WedgeFld_2": {
+      "@id": "rt:WedgeFld_2",
+      "@type": "xsd:integer"
+    },
+    "WedgeDuration": {
+      "@id": "rt:WedgeDuration",
+      "@type": "xsd:integer"
+    },
+    "ScarBoostYN": {
+      "@id": "rt:ScarBoostYN",
+      "@type": "xsd:integer"
+    },
+    "FldCtrBreast": {
+      "@id": "rt:FldCtrBreast",
+      "@type": "xsd:integer"
+    },
+    "Lat": {
+      "@id": "rt:Lat",
+      "@type": "xsd:integer"
+    },
+    "Config": {
+      "@id": "rt:Config",
+      "@type": "xsd:string"
+    },
+    "OthConfig": {
+      "@id": "rt:OthConfig",
+      "@type": "xsd:string"
+    },
+    "Dose": {
+      "@id": "rt:Dose",
+      "@type": "xsd:decimal"
+    },
+    "Def": {
+      "@id": "rt:Def",
+      "@type": "xsd:integer"
+    },
+    "Tdepth": {
+      "@id": "rt:Tdepth",
+      "@type": "xsd:decimal"
+    },
+    "FracYN": {
+      "@id": "rt:FracYN",
+      "@type": "xsd:integer"
+    },
+    "NumFrac": {
+      "@id": "rt:NumFrac",
+      "@type": "xsd:integer"
+    },
+    "DailyFracDose": {
+      "@id": "rt:DailyFracDose",
+      "@type": "xsd:decimal"
+    },
+    "MachineName": {
+      "@id": "rt:MachineName",
+      "@type": "xsd:integer"
+    },
+    "MachineTEXT": {
+      "@id": "rt:MachineTEXT",
+      "@type": "xsd:string"
+    },
+    "Comments": {
+      "@id": "rt:Comments",
+      "@type": "xsd:integer"
+    },
+    "CommentTEXT": {
+      "@id": "rt:CommentTEXT",
+      "@type": "xsd:string"
+    }
+  }
+}
